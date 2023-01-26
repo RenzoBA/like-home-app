@@ -1,6 +1,6 @@
 export const getPropertiesSearch = async (path) => {
   const res = await fetch(
-    `https://bayut.p.rapidapi.com/properties/list?locationExternalIDs=5002%2C6020&${path}&hitsPerPage=2&page=0&lang=en`,
+    `https://bayut.p.rapidapi.com/properties/list?locationExternalIDs=5002%2C6020&${path}&hitsPerPage=1&page=0&lang=en`,
     {
       method: "GET",
       headers: {

@@ -9,9 +9,12 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundColor: {
-        skeleton: "#e2e8f0",
-        "skeleton-dark": "#64748b",
+      colors: {
+        theme: "#bef264",
+        dark: "#292524",
+        "dark-card": "#44403c",
+        skeleton: "#e7e5e4",
+        "skeleton-dark": "#44403c",
       },
     },
   },

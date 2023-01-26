@@ -22,9 +22,9 @@ const externalId = ({ params: { externalID } }) => {
     <div
       className={`${
         darkMode && "dark"
-      } flex justify-center items-center text-gray-800`}
+      } flex justify-center items-center text-dark`}
     >
-      <div className="w-full flex justify-center dark:bg-slate-700 dark:text-slate-200">
+      <div className="w-full flex justify-center dark:bg-dark dark:text-white">
         <PropertyDetails property={propertyDetails} />
       </div>
     </div>
