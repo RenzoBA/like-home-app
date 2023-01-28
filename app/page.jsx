@@ -1,5 +1,8 @@
 "use client";
 
+import ReservationForm from "@/components/ReservationForm";
+//http://localhost:3000/rent/6235897
+
 import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
@@ -53,7 +56,7 @@ const page = () => {
           <h1 className="text-7xl font-black text-white tracking-wide">
             Like H
             <span className="inline-block relative -bottom-1">
-              <BiHomeSmile color="#bef264" />
+              <BiHomeSmile color="#84cc16" />
             </span>
             me
           </h1>

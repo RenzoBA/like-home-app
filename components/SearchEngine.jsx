@@ -45,7 +45,7 @@ const SearchEngine = ({ setCategorySelected }) => {
   };
 
   return (
-    <div className="flex flex-row gap-2 items-center justify-center text-center border border-dark dark:border-white rounded-full py-2 px-4 w-full bg-stone-200 dark:bg-dark">
+    <div className="flex flex-row gap-2 items-center justify-center text-center border border-dark dark:border-white rounded-full py-2 px-4 w-full dark:bg-dark">
       <div className="search-section group">
         <label className="search-section-label">
           {filters.purpose ? filters.purpose.split("-").join(" ") : "purpose"}

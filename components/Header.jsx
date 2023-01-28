@@ -22,7 +22,7 @@ const Header = () => {
             <h1 className="text-3xl font-black">
               Like H
               <span className="inline-block relative -bottom-1">
-                <BiHomeSmile color="#bef264" />
+                <BiHomeSmile color="#84cc16" />
               </span>
               me
             </h1>
@@ -55,13 +55,13 @@ const Header = () => {
               <button
                 onClick={() => setDarkMode(!darkMode)}
                 className={`${
-                  darkMode ? "bg-white" : "bg-dark"
+                  darkMode ? "bg-theme" : "bg-dark"
                 } p-2 rounded-full transform ease-in-out transition-all text-xl hover:text-2xl absolute right-0 z-50`}
               >
                 {darkMode ? (
                   <BiSun className="text-dark" />
                 ) : (
-                  <BiMoon className="text-white" />
+                  <BiMoon className="text-theme" />
                 )}
               </button>
               {/* user login */}

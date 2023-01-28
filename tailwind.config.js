@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        theme: "#bef264",
+        theme: "#84cc16",
         dark: "#292524",
         "dark-card": "#44403c",
         skeleton: "#e7e5e4",

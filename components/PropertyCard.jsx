@@ -59,7 +59,7 @@ const PropertyCard = ({
           </div>
           <div className="mt-4 px-5">
             <div className="flex items-center text-sm gap-1">
-              <FaStar color="yellow" fill="yellow" />
+              <FaStar color="#84cc16" />
               <p>{(score / 20).toFixed(2)}</p>
             </div>
             <p className="font-medium text-base md:text-lg">
@@ -88,9 +88,11 @@ const PropertyCard = ({
               <p>{contactName.substring(0, 8)}...</p>
               <BiCheckCircle color={`${isVerified ? "#63b3ed" : "#a8a29e"}`} />
             </div>
-            <p className="text-sm font-semibold whitespace-nowrap">
-              $ <span className="text-xl">{(price / 3.67).toFixed(2)}</span>
-              {rentFrequency && `/${rentFrequency[0]}`}
+            <p className="text-lg font-semibold whitespace-nowrap">
+              {price} AED{" "}
+              <span className="text-sm text-stone-400">
+                {rentFrequency && `/${rentFrequency[0]}`}
+              </span>
             </p>
           </div>
         </div>
