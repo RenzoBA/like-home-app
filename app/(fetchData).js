@@ -18,7 +18,7 @@ export const getPropertiesSearch = async (path) => {
 
 export const getProperties = async (purpose) => {
   const res = await fetch(
-    `https://bayut.p.rapidapi.com/properties/list?locationExternalIDs=5002%2C6020&purpose=${purpose}&hitsPerPage=4&page=0&lang=en&sort=city-level-score&rentFrequency=monthly&categoryExternalID=4`,
+    `https://bayut.p.rapidapi.com/properties/list?locationExternalIDs=5002%2C6020&purpose=${purpose}&hitsPerPage=1&page=0&lang=en&sort=city-level-score&rentFrequency=monthly&categoryExternalID=4`,
     {
       method: "GET",
       headers: {

@@ -42,7 +42,7 @@ const ReservationForm = ({
           type="date"
           min={today}
           max="2023-12-31"
-          className="date-input"
+          className="input"
           value={dayIn}
           onChange={(e) => setDayIn(e.target.value)}
           required
@@ -51,15 +51,13 @@ const ReservationForm = ({
           type="date"
           min={today}
           max="2023-12-31"
-          className="date-input"
+          className="input"
           value={dayOut}
           onChange={(e) => setDayOut(e.target.value)}
           required
         />
       </div>
-      <button className="uppercase tracking-widest rounded-lg py-2 mb-6 w-full bg-gradient-to-l from-lime-400 to-lime-600 text-white transition-all transform hover:text-xl ease-in-out duration-150">
-        book now
-      </button>
+      <button className="button">book now</button>
       <div className="w-full">
         <div className="flex w-full justify-between gap-1">
           <p className="font-light">

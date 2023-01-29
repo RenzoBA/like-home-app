@@ -1,8 +1,5 @@
 "use client";
 
-import ReservationForm from "@/components/ReservationForm";
-//http://localhost:3000/rent/6235897
-
 import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
@@ -27,6 +24,7 @@ const page = () => {
               width={800}
               height={800}
               className="home-section-image"
+              alt="rent"
             />
             <Link
               href="/rent"
@@ -42,6 +40,7 @@ const page = () => {
               width={800}
               height={800}
               className="home-section-image"
+              alt="sale"
             />
             <Link
               href="/sale"

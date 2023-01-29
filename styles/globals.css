@@ -19,7 +19,7 @@ html {
     @apply transition-all duration-500 hover:scale-105 absolute bottom-20 py-2 px-5 text-dark dark:text-white rounded-2xl uppercase text-2xl bg-white/60 dark:bg-stone-600/70 tracking-widest font-black drop-shadow-lg group-hover:bg-theme border border-dark dark:border-white;
   }
 
-  .nav-link {
+  .link {
     @apply hover:text-theme transition-all;
   }
   .details-house {
@@ -35,14 +35,22 @@ html {
   }
 
   .search-section-buttons {
-    @apply flex flex-col w-full absolute py-2 gap-2 drop-shadow-lg bg-white dark:bg-stone-800 rounded-lg opacity-0 invisible group-hover:visible group-hover:opacity-100 ease-in-out duration-300 transition-opacity z-50;
+    @apply flex flex-col w-full absolute py-2 gap-2 drop-shadow-lg bg-white dark:bg-dark rounded-lg opacity-0 invisible group-hover:visible group-hover:opacity-100 ease-in-out duration-300 transition-opacity z-50;
   }
 
   .search-section-buttons > button {
     @apply hover:text-theme;
   }
 
-  .date-input {
+  .button {
+    @apply uppercase tracking-widest rounded-lg py-2 mb-6 w-full bg-gradient-to-l from-lime-400 to-lime-600 text-white transition-all transform hover:text-xl ease-in-out duration-150;
+  }
+
+  .input {
     @apply rounded-lg py-1 px-2 text-dark border;
+  }
+
+  .login-button {
+    @apply w-full flex flex-row gap-4 items-center justify-center font-light tracking-wider uppercase text-lg border border-dark dark:border-white py-3 px-8 rounded-lg inset-0 hover:bg-stone-200 dark:hover:bg-stone-900;
   }
 }
