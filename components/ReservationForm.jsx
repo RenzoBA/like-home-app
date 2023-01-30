@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
@@ -5,9 +6,11 @@ const ReservationForm = ({
   price = 0,
   rentFrequency = "monthly",
   score = 0,
+  user,
 }) => {
   const [dayIn, setDayIn] = useState("");
   const [dayOut, setDayOut] = useState("");
+  const router = useRouter();
 
   const today = new Date();
   const priceDay = price / 30;
@@ -20,9 +23,14 @@ const ReservationForm = ({
     e.preventDefault();
   };
 
+  const loginRoute = (e) => {
+    e.preventDefault();
+    router.push("/login");
+  };
+
   return (
     <form
-      onSubmit={handleSubmitBook}
+      onSubmit={user ? handleSubmitBook : loginRoute}
       className="flex flex-col items-center justify-center text-lg font-medium p-4 rounded-2xl shadow border border-dark dark:border-white"
     >
       <div className="flex flex-row justify-between w-full items-center text-xl mb-4">

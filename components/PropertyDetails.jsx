@@ -1,6 +1,8 @@
 "use client";
 
+import { MyContext } from "app/(global-context)";
 import Image from "next/image";
+import { useContext } from "react";
 import { BiBath, BiBed, BiCheckCircle, BiExpand } from "react-icons/bi";
 import { FaStar } from "react-icons/fa";
 import { TiLocation } from "react-icons/ti";
@@ -27,15 +29,16 @@ const PropertyDetails = ({
     isVerified,
   },
 }) => {
+  const { user } = useContext(MyContext);
   if (price) {
     return (
       <div className="max-w-6xl p-4">
         <div className="flex flex-col">
           <div className="py-10">
             {/* titulo/info */}
-            <h2 className="text-3xl font-medium uppercase flex items-center">
+            <h2 className="text-3xl font-medium uppercase inline-block relative">
               {title}
-              <span className="text-white px-2 py-1 rounded-lg bg-red-500 text-xs font-medium select-none w-fit uppercase ml-4">
+              <span className="text-white px-2 py-1 rounded-lg bg-red-500 text-xs font-medium select-none w-fit uppercase ml-4 -bottom-2">
                 {purpose.split("-").join(" ")}
               </span>
             </h2>
@@ -155,6 +158,7 @@ const PropertyDetails = ({
               price={price}
               rentFrequency={rentFrequency}
               score={score}
+              user={user}
             />
           </div>
         </div>

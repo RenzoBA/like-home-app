@@ -1,17 +1,35 @@
 "use client";
 
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { MyContext } from "../app/(global-context)";
 import { BiHomeSmile, BiSun, BiMoon, BiUser, BiMenu } from "react-icons/bi";
 import SearchEngine from "./SearchEngine";
+import { auth } from "firebaseConfig";
 import Image from "next/image";
+import { signOut } from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
-  const { user, darkMode, setDarkMode, categorySelected, setCategorySelected } =
-    useContext(MyContext);
-  const [showUserMenu, setShowUserMenu] = useState(false);
+  const {
+    user,
+    setUser,
+    darkMode,
+    setDarkMode,
+    categorySelected,
+    setCategorySelected,
+  } = useContext(MyContext);
+  const router = useRouter();
   console.log("USER:", user);
+
+  const logout = () => {
+    try {
+      signOut(auth);
+      setUser(null);
+      router.push("/");
+    } catch (error) {}
+    console.log("USER after logout:", user);
+  };
 
   return (
     <div
@@ -70,7 +88,6 @@ const Header = () => {
               {/* user login */}
               <div className="relative group">
                 <button
-                  onClick={() => setShowUserMenu(!showUserMenu)}
                   className={`${
                     darkMode ? "bg-white" : "bg-dark"
                   } p-2 rounded-full transform ease-in-out transition-all text-xl hover:bg-theme`}
@@ -98,11 +115,23 @@ const Header = () => {
                     )}
                   </div>
                 </button>
-                <div className="invisible group-focus-within:visible p-4 rounded-lg shadow-lg flex flex-col gap-4 bg-white dark:bg-dark w-40 text-base absolute -left-20 top-12 font-medium">
-                  <Link href="/login" className="hover:text-theme">
-                    Sign up / Log in
-                  </Link>
-                </div>
+                {user ? (
+                  <div className="invisible group-focus-within:visible p-4 rounded-lg shadow-lg flex flex-col items-start gap-4 bg-white dark:bg-dark w-40 text-base absolute -left-20 top-12 font-medium">
+                    <p className="text-xs uppercase font-normal mb-2">
+                      {user.displayName}
+                    </p>
+                    <Link href="/saved" className="hover:text-theme">
+                      Properties saved
+                    </Link>
+                    <button onClick={logout}>Log out</button>
+                  </div>
+                ) : (
+                  <div className="invisible group-focus-within:visible p-4 rounded-lg shadow-lg flex flex-col gap-4 bg-white dark:bg-dark w-40 text-base absolute -left-20 top-12 font-medium">
+                    <Link href="/login" className="hover:text-theme">
+                      Sign up / Log in
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </div>

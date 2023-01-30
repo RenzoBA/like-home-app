@@ -8,6 +8,10 @@ import {
   BiCheckCircle,
 } from "react-icons/bi";
 import { FaStar } from "react-icons/fa";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { MyContext } from "app/(global-context)";
+import { useContext } from "react";
+import { useRouter } from "next/navigation";
 
 const PropertyCard = ({
   property: {
@@ -27,8 +31,20 @@ const PropertyCard = ({
     isVerified,
   },
 }) => {
+  const { user } = useContext(MyContext);
+  const router = useRouter();
+
+  const handleSaveProperty = () => {
+    alert("saved");
+  };
+
+  const loginRoute = (e) => {
+    e.preventDefault();
+    router.push("/login");
+  };
+
   return (
-    <div className="rounded-lg hover:-translate-y-2 transform transition-transform duration-300 ease-in-out bg-white text-dark shadow-md border dark:bg-dark-card dark:text-white border-dark dark:border-white overflow-hidden pb-5">
+    <div className="rounded-lg hover:-translate-y-2 transform transition-transform duration-300 ease-in-out bg-white text-dark shadow-md dark:bg-dark-card dark:text-white border border-stone-500 overflow-hidden pb-5">
       <Link href={`/${purpose.split("-")[1]}/${externalID}`}>
         <div>
           <div className="w-full flex flex-col items-center relative">
@@ -41,10 +57,13 @@ const PropertyCard = ({
               height={400}
               className="object-cover w-full h-52"
             />
-            <div className="flex items-start justify-between w-full absolute inset-3">
+            <div className="flex items-center pr-6 h-fit justify-between w-full absolute inset-3">
               <p className="text-white px-3 py-2 rounded-lg bg-red-500 text-sm font-medium select-none w-fit shadow uppercase">
                 {purpose.split("-").join(" ")}
               </p>
+              <button onClick={user ? handleSaveProperty : loginRoute}>
+                <AiOutlineHeart className="z-50 text-3xl" />
+              </button>
             </div>
             <div className="flex items-center justify-center gap-3 shadow px-3 py-1 rounded-lg w-fit absolute inset-y-[80%] bg-white h-max text-dark">
               <div className="flex gap-1 items-center">

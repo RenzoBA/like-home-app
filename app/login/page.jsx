@@ -1,9 +1,8 @@
 "use client";
 
 import { MyContext } from "app/(global-context)";
-import { app } from "firebaseConfig";
+import { auth } from "firebaseConfig";
 import {
-  getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -23,7 +22,6 @@ const login = () => {
     password: "",
   });
   const router = useRouter();
-  const auth = getAuth(app);
   const provider = {
     google: new GoogleAuthProvider(),
   };
@@ -109,7 +107,7 @@ const login = () => {
       <div className="w-full h-full flex flex-col items-center justify-center dark:bg-dark dark:text-white">
         <form
           onSubmit={signup ? signupEmail : loginEmail}
-          className="flex flex-col gap-3 w-1/4"
+          className="flex flex-col gap-3 w-1/4 border-b border-stone-300 dark:border-stone-600"
         >
           <div className={`${!signup && "hidden"} flex gap-3`}>
             <input
@@ -141,12 +139,11 @@ const login = () => {
             value={credential.password}
             className="input py-2 px-4"
           />
-          <button className="button h-14">
+          <button className="button h-10">
             {signup ? "Sign up " : "Log in "}
           </button>
         </form>
-        <hr />
-        <div className="flex flex-col gap-5 w-1/4">
+        <div className="flex flex-col gap-5 w-1/4 pt-6">
           <button onClick={loginGoogle} className="login-button">
             <FcGoogle className="text-xl" /> Continue with Google
           </button>
