@@ -20,7 +20,6 @@ const Header = () => {
     setCategorySelected,
   } = useContext(MyContext);
   const router = useRouter();
-  console.log("USER:", user);
 
   const logout = () => {
     try {

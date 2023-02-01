@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -12,6 +13,8 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { MyContext } from "app/(global-context)";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
+import { collection, addDoc, doc, deleteDoc } from "firebase/firestore";
+import { db } from "firebaseConfig";
 
 const PropertyCard = ({
   property: {
@@ -34,8 +37,30 @@ const PropertyCard = ({
   const { user } = useContext(MyContext);
   const router = useRouter();
 
-  const handleSaveProperty = () => {
-    alert("saved");
+  const property = user?.savedProperties.filter(
+    (property) => property.externalIDProperty === externalID
+  );
+
+  console.log(property);
+
+  const saveProperty = async () => {
+    try {
+      const docRef = await addDoc(collection(db, "users"), {
+        userID: user.uid,
+        externalIDProperty: externalID,
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
+  };
+
+  const unsaveProperty = async () => {
+    try {
+      await deleteDoc(doc(db, "users", property[0].id));
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
   };
 
   const loginRoute = (e) => {
@@ -44,7 +69,25 @@ const PropertyCard = ({
   };
 
   return (
-    <div className="rounded-lg hover:-translate-y-2 transform transition-transform duration-300 ease-in-out bg-white text-dark shadow-md dark:bg-dark-card dark:text-white border border-stone-500 overflow-hidden pb-5">
+    <div className="rounded-lg hover:-translate-y-2 transform transition-transform duration-300 ease-in-out bg-white text-dark shadow-md dark:bg-dark-card dark:text-white border border-stone-500 overflow-hidden pb-5 relative w-72 h-[410px]">
+      <button
+        onClick={
+          !user
+            ? loginRoute
+            : user.savedProperties.includes(property[0])
+            ? unsaveProperty
+            : saveProperty
+        }
+        className="z-50 text-3xl absolute top-3 right-2"
+      >
+        {!user ? (
+          <AiOutlineHeart />
+        ) : user.savedProperties.includes(property[0]) ? (
+          <AiFillHeart color="#ef4444" />
+        ) : (
+          <AiOutlineHeart />
+        )}
+      </button>
       <Link href={`/${purpose.split("-")[1]}/${externalID}`}>
         <div>
           <div className="w-full flex flex-col items-center relative">
@@ -58,12 +101,9 @@ const PropertyCard = ({
               className="object-cover w-full h-52"
             />
             <div className="flex items-center pr-6 h-fit justify-between w-full absolute inset-3">
-              <p className="text-white px-3 py-2 rounded-lg bg-red-500 text-sm font-medium select-none w-fit shadow uppercase">
+              <p className="px-3 py-2 rounded-lg bg-white text-dark text-sm font-medium select-none w-fit shadow uppercase">
                 {purpose.split("-").join(" ")}
               </p>
-              <button onClick={user ? handleSaveProperty : loginRoute}>
-                <AiOutlineHeart className="z-50 text-3xl" />
-              </button>
             </div>
             <div className="flex items-center justify-center gap-3 shadow px-3 py-1 rounded-lg w-fit absolute inset-y-[80%] bg-white h-max text-dark">
               <div className="flex gap-1 items-center">
@@ -82,7 +122,7 @@ const PropertyCard = ({
               <p>{(score / 20).toFixed(2)}</p>
             </div>
             <p className="font-medium text-base md:text-lg">
-              {location[2].name + ", " + location[1].name}
+              {location[2].name.substring(0, 17) + "... , " + location[1].name}
             </p>
           </div>
           <div className="mt-6 grid grid-cols-2 gap-4 px-5">
@@ -107,7 +147,7 @@ const PropertyCard = ({
               <p>{contactName.substring(0, 8)}...</p>
               <BiCheckCircle color={`${isVerified ? "#63b3ed" : "#a8a29e"}`} />
             </div>
-            <p className="text-lg font-semibold whitespace-nowrap">
+            <p className="text-base font-medium whitespace-nowrap">
               {price} AED{" "}
               <span className="text-sm text-stone-400">
                 {rentFrequency && `/${rentFrequency[0]}`}

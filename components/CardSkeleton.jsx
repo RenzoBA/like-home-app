@@ -1,6 +1,6 @@
 const CardSkeleton = () => {
   return (
-    <div className="rounded-lg bg-white dark:bg-dark shadow-md border border-stone-500 overflow-hidden pb-5">
+    <div className="rounded-lg bg-white dark:bg-dark shadow-md border border-stone-500 overflow-hidden pb-5 w-72 h-[410px]">
       <div className="animate-pulse">
         <div className="w-full flex flex-col items-center relative">
           <div className="w-full h-52 bg-skeleton dark:bg-skeleton-dark" />

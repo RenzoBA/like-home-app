@@ -1,14 +1,31 @@
 "use client";
 
+import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { db } from "firebaseConfig";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { BiHomeSmile } from "react-icons/bi";
 import { MyContext } from "./(global-context)";
 import "/styles/globals.css";
 
 const page = () => {
-  const { darkMode, setCategorySelected } = useContext(MyContext);
+  const { darkMode, setCategorySelected, user, setUser } =
+    useContext(MyContext);
+
+  useEffect(() => {
+    if (user) {
+      const q = query(collection(db, "users"), where("userID", "==", user.uid));
+
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const properties = [];
+        querySnapshot.forEach((doc) => {
+          properties.push({ id: doc.id, ...doc.data() });
+        });
+        setUser({ ...user, savedProperties: properties });
+      });
+    }
+  }, []);
 
   return (
     <div
