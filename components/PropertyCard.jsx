@@ -151,7 +151,7 @@ const PropertyCard = ({
             <p className="text-base font-medium whitespace-nowrap">
               {price} AED{" "}
               <span className="text-sm text-stone-400">
-                {rentFrequency && `/${rentFrequency[0]}`}
+                {rentFrequency && `/ ${rentFrequency[0]}`}
               </span>
             </p>
           </div>

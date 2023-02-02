@@ -1,5 +1,7 @@
 "use client";
 
+// ADD SALE FOLDER - IMPLEMENT PHONE DEVICE SIZE - ADD PHONE AUTH - ADD MAP PROPERTY FEATURE
+
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { auth } from "firebaseConfig";
@@ -142,7 +144,7 @@ const login = () => {
             className="input py-2 px-4"
           />
           <button className="button h-10">
-            {signup ? "Sign up " : "Log in "}
+            {signup ? "Sign up" : "Log in"}
           </button>
         </form>
         <div className="flex flex-col gap-5 w-1/4 pt-6">

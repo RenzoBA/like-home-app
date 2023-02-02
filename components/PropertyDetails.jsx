@@ -5,6 +5,7 @@ import Image from "next/image";
 import { MyContext } from "app/(global-context)";
 import PropertyMap from "@/components/PropertyMap";
 import ReservationForm from "@/components/ReservationForm";
+import SaleForm from "@/components/SaleForm";
 import { FaStar } from "react-icons/fa";
 import { TiLocation } from "react-icons/ti";
 import { BiBath, BiBed, BiCheckCircle, BiExpand } from "react-icons/bi";
@@ -15,7 +16,7 @@ const PropertyDetails = ({
     purpose,
     price,
     product,
-    rentFrequency = "",
+    rentFrequency,
     title,
     description,
     location,
@@ -88,24 +89,24 @@ const PropertyDetails = ({
           </div>
           <Image
             src={photos[0].url}
-            className="row-span-full object-cover w-full h-full"
             alt="property"
             width={600}
             height={600}
+            className="row-span-full object-cover w-full h-full"
           />
           <Image
             src={photos[1] ? photos[1].url : "/assets/cover-photo-default.jpg"}
-            className="row-span-1 object-cover w-full h-full"
             alt="property"
             width={600}
             height={600}
+            className="row-span-1 object-cover w-full h-full"
           />
           <Image
             src={photos[2] ? photos[2].url : "/assets/cover-photo-default.jpg"}
-            className="row-span-1 object-cover w-full h-full"
             alt="property"
             width={600}
             height={600}
+            className="row-span-1 object-cover w-full h-full"
           />
         </div>
         <div className="flex flex-col items-center gap-3 justify-center p-10 w-full">
@@ -115,6 +116,7 @@ const PropertyDetails = ({
                 src={
                   agency ? agency.logo.url : "/assets/user-photo-default.jpg"
                 }
+                alt="logo"
                 width={60}
                 height={60}
                 className="rounded-full shadow border object-contain w-12 h-12"
@@ -140,7 +142,7 @@ const PropertyDetails = ({
             <div className="flex flex-col items-end justify-center">
               <p className="font-bold text-2xl">{price} AED </p>
               <span className="text-stone-400 font-light text-sm">
-                {"/ " + rentFrequency}
+                {rentFrequency && `/${rentFrequency}`}
               </span>
             </div>
           </div>
@@ -153,12 +155,16 @@ const PropertyDetails = ({
         <hr />
         <div className="flex flex-row p-10 w-full justify-between items-center">
           <PropertyMap geography={geography} />
-          <ReservationForm
-            price={price}
-            rentFrequency={rentFrequency}
-            score={score}
-            user={user}
-          />
+          {rentFrequency ? (
+            <ReservationForm
+              price={price}
+              rentFrequency={rentFrequency}
+              score={score}
+              user={user}
+            />
+          ) : (
+            <SaleForm price={price} score={score} user={user} />
+          )}
         </div>
       </div>
     </div>
