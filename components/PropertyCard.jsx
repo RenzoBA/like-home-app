@@ -1,6 +1,14 @@
 "use client";
-import Image from "next/image";
+
+import { useContext } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { db } from "firebaseConfig";
+import { collection, addDoc, doc, deleteDoc } from "firebase/firestore";
+import { MyContext } from "app/(global-context)";
+import { FaStar } from "react-icons/fa";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import {
   BiBed,
   BiBath,
@@ -8,13 +16,6 @@ import {
   BiHomeAlt,
   BiCheckCircle,
 } from "react-icons/bi";
-import { FaStar } from "react-icons/fa";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { MyContext } from "app/(global-context)";
-import { useContext } from "react";
-import { useRouter } from "next/navigation";
-import { collection, addDoc, doc, deleteDoc } from "firebase/firestore";
-import { db } from "firebaseConfig";
 
 const PropertyCard = ({
   property: {
@@ -37,11 +38,9 @@ const PropertyCard = ({
   const { user } = useContext(MyContext);
   const router = useRouter();
 
-  const property = user?.savedProperties.filter(
-    (property) => property.externalIDProperty === externalID
+  const property = user?.savedProperties.find(
+    (p) => p.externalIDProperty === externalID
   );
-
-  console.log(property);
 
   const saveProperty = async () => {
     try {
@@ -57,7 +56,7 @@ const PropertyCard = ({
 
   const unsaveProperty = async () => {
     try {
-      await deleteDoc(doc(db, "users", property[0].id));
+      await deleteDoc(doc(db, "users", property.id));
     } catch (error) {
       console.error("Error adding document: ", error);
     }
@@ -74,7 +73,7 @@ const PropertyCard = ({
         onClick={
           !user
             ? loginRoute
-            : user.savedProperties.includes(property[0])
+            : user.savedProperties.includes(property)
             ? unsaveProperty
             : saveProperty
         }
@@ -82,7 +81,7 @@ const PropertyCard = ({
       >
         {!user ? (
           <AiOutlineHeart />
-        ) : user.savedProperties.includes(property[0]) ? (
+        ) : user.savedProperties.includes(property) ? (
           <AiFillHeart color="#ef4444" />
         ) : (
           <AiOutlineHeart />
@@ -119,7 +118,7 @@ const PropertyCard = ({
           <div className="mt-4 px-5">
             <div className="flex items-center text-sm gap-1">
               <FaStar color="#84cc16" />
-              <p>{(score / 20).toFixed(2)}</p>
+              <p>{score / 20}</p>
             </div>
             <p className="font-medium text-base md:text-lg">
               {location[2].name.substring(0, 17) + "... , " + location[1].name}
@@ -139,13 +138,15 @@ const PropertyCard = ({
             <div className="flex flex-row items-center justify-start gap-1">
               <Image
                 alt="agency"
-                src={agency.logo.url}
+                src={
+                  agency ? agency.logo.url : "/assets/user-photo-default.jpg"
+                }
                 width={40}
                 height={40}
-                className="rounded-full shadow border object-contain w-9 h-9"
+                className="rounded-full shadow border object-contain w-8 h-8"
               />
               <p>{contactName.substring(0, 8)}...</p>
-              <BiCheckCircle color={`${isVerified ? "#63b3ed" : "#a8a29e"}`} />
+              {isVerified && <BiCheckCircle color="#63b3ed" />}
             </div>
             <p className="text-base font-medium whitespace-nowrap">
               {price} AED{" "}

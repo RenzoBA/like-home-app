@@ -1,24 +1,17 @@
 "use client";
 
-import Link from "next/link";
 import { useContext } from "react";
-import { MyContext } from "../app/(global-context)";
-import { BiHomeSmile, BiSun, BiMoon, BiUser, BiMenu } from "react-icons/bi";
-import SearchEngine from "./SearchEngine";
-import { auth } from "firebaseConfig";
+import Link from "next/link";
 import Image from "next/image";
-import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
+import { auth } from "firebaseConfig";
+import { signOut } from "firebase/auth";
+import { MyContext } from "app/(global-context)";
+import SearchEngine from "@/components/SearchEngine";
+import { BiHomeSmile, BiSun, BiMoon, BiUser, BiMenu } from "react-icons/bi";
 
 const Header = () => {
-  const {
-    user,
-    setUser,
-    darkMode,
-    setDarkMode,
-    categorySelected,
-    setCategorySelected,
-  } = useContext(MyContext);
+  const { user, setUser, darkMode, setDarkMode } = useContext(MyContext);
   const router = useRouter();
 
   const logout = () => {
@@ -26,8 +19,9 @@ const Header = () => {
       signOut(auth);
       setUser(null);
       router.push("/");
-    } catch (error) {}
-    console.log("USER after logout:", user);
+    } catch (error) {
+      console.log("logout failed: ", error);
+    }
   };
 
   return (
@@ -38,11 +32,7 @@ const Header = () => {
     >
       <div className="w-full flex items-center justify-center dark:bg-dark text-dark dark:text-white border-b border-dark dark:border-white">
         <div className="flex justify-between items-center w-full max-w-7xl p-3">
-          <Link
-            href="/"
-            onClick={() => setCategorySelected("")}
-            className="1/4"
-          >
+          <Link href="/" className="1/4">
             <h1 className="text-3xl font-black">
               Like H
               <span className="inline-block relative -bottom-1">
@@ -52,54 +42,29 @@ const Header = () => {
             </h1>
           </Link>
           <div className="w-1/2">
-            <SearchEngine setCategorySelected={setCategorySelected} />
+            <SearchEngine />
           </div>
           <div className="flex items-center justify-end gap-8 w-1/4 text-2xl">
             <ul className="flex gap-4">
-              <Link
-                href="/rent"
-                className={`link ${categorySelected == "rent" && "text-theme"}`}
-                onClick={() => setCategorySelected("rent")}
-              >
+              <Link href="/rent" className={"link"}>
                 Rent
               </Link>
-              <Link
-                href="/sale"
-                className={`link ${categorySelected == "sale" && "text-theme"}`}
-                onClick={() => setCategorySelected("sale")}
-              >
+              <Link href="/sale" className={"link"}>
                 Sale
               </Link>
             </ul>
             <div className="flex flex-row items-center justify-center gap-2">
               <button
                 onClick={() => setDarkMode(!darkMode)}
-                className={`${
-                  darkMode ? "bg-white" : "bg-dark"
-                } p-2 rounded-full transform ease-in-out transition-all text-xl hover:bg-theme`}
+                className="header-icon"
               >
-                {darkMode ? (
-                  <BiSun className="text-dark" />
-                ) : (
-                  <BiMoon className="text-white" />
-                )}
+                {darkMode ? <BiSun /> : <BiMoon />}
               </button>
-              {/* user login */}
               <div className="relative group">
-                <button
-                  className={`${
-                    darkMode ? "bg-white" : "bg-dark"
-                  } p-2 rounded-full transform ease-in-out transition-all text-xl hover:bg-theme`}
-                >
+                <button className="header-icon">
                   <div className="flex flex-row items-center gap-2">
-                    <BiMenu
-                      className={`${darkMode ? "text-dark" : "text-white"}`}
-                    />
-                    {!user ? (
-                      <BiUser
-                        className={`${darkMode ? "text-dark" : "text-white"}`}
-                      />
-                    ) : (
+                    <BiMenu />
+                    {user ? (
                       <Image
                         src={
                           user.photoURL
@@ -111,26 +76,30 @@ const Header = () => {
                         alt="user"
                         className="rounded-full w-6 h-6"
                       />
+                    ) : (
+                      <BiUser />
                     )}
                   </div>
                 </button>
-                {user ? (
-                  <div className="invisible group-focus-within:visible p-4 rounded-lg shadow-lg flex flex-col items-start gap-4 bg-white dark:bg-dark w-40 text-base absolute -left-20 top-12 font-medium">
-                    <p className="text-xs uppercase font-normal mb-2">
-                      {user.displayName}
-                    </p>
-                    <Link href="/saved" className="hover:text-theme">
-                      Properties saved
-                    </Link>
-                    <button onClick={logout}>Log out</button>
-                  </div>
-                ) : (
-                  <div className="invisible group-focus-within:visible p-4 rounded-lg shadow-lg flex flex-col gap-4 bg-white dark:bg-dark w-40 text-base absolute -left-20 top-12 font-medium">
+                <div className="invisible group-focus-within:visible transition-all p-4 rounded-lg shadow-lg flex flex-col items-start gap-4 bg-white dark:bg-dark w-40 text-base absolute -left-20 top-12 font-medium">
+                  {user ? (
+                    <>
+                      <p className="text-xs uppercase font-normal mb-2">
+                        {user.displayName}
+                      </p>
+                      <Link href="/saved" className="hover:text-theme">
+                        Properties saved
+                      </Link>
+                      <button onClick={logout} className="text-red-500">
+                        Log out
+                      </button>
+                    </>
+                  ) : (
                     <Link href="/login" className="hover:text-theme">
                       Sign up / Log in
                     </Link>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </div>
           </div>

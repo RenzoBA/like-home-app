@@ -22,6 +22,7 @@ html {
   .link {
     @apply hover:text-theme transition-all;
   }
+
   .details-house {
     @apply flex flex-col sm:flex-row items-center justify-center gap-1;
   }
@@ -39,7 +40,11 @@ html {
   }
 
   .search-section-buttons > button {
-    @apply hover:text-theme;
+    @apply hover:text-theme uppercase font-light tracking-wide;
+  }
+
+  .header-icon {
+    @apply bg-dark dark:bg-white p-2 rounded-full transform ease-in-out transition-all text-xl hover:bg-theme dark:hover:bg-theme text-white dark:text-dark;
   }
 
   .button {
@@ -48,6 +53,10 @@ html {
 
   .input {
     @apply rounded-lg py-1 px-2 text-dark border;
+  }
+
+  .form-cost {
+    @apply flex w-full justify-between gap-1;
   }
 
   .login-button {

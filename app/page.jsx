@@ -1,17 +1,15 @@
 "use client";
 
-import { collection, onSnapshot, query, where } from "firebase/firestore";
-import { db } from "firebaseConfig";
-import Image from "next/image";
-import Link from "next/link";
 import { useContext, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { db } from "firebaseConfig";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { MyContext } from "app/(global-context)";
 import { BiHomeSmile } from "react-icons/bi";
-import { MyContext } from "./(global-context)";
-import "/styles/globals.css";
 
 const page = () => {
-  const { darkMode, setCategorySelected, user, setUser } =
-    useContext(MyContext);
+  const { darkMode, user, setUser } = useContext(MyContext);
 
   useEffect(() => {
     if (user) {
@@ -43,11 +41,7 @@ const page = () => {
               className="home-section-image"
               alt="rent"
             />
-            <Link
-              href="/rent"
-              className="home-section-link"
-              onClick={() => setCategorySelected("rent")}
-            >
+            <Link href="/rent" className="home-section-link">
               rent
             </Link>
           </div>
@@ -59,11 +53,7 @@ const page = () => {
               className="home-section-image"
               alt="sale"
             />
-            <Link
-              href="/sale"
-              className="home-section-link"
-              onClick={() => setCategorySelected("sale")}
-            >
+            <Link href="/sale" className="home-section-link">
               sale
             </Link>
           </div>

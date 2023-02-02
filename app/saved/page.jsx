@@ -1,11 +1,12 @@
 "use client";
 
-import SavedPropertyCard from "@/components/SavedPropertyCard";
-import { MyContext } from "app/(global-context)";
 import { useContext } from "react";
+import { MyContext } from "app/(global-context)";
+import SavedPropertyCard from "@/components/SavedPropertyCard";
 
 const page = () => {
   const { darkMode, user } = useContext(MyContext);
+
   return (
     <div
       className={`${
@@ -21,7 +22,6 @@ const page = () => {
               <h2 className="text-3xl font-medium">
                 Properties saved ({user.savedProperties.length}):
               </h2>
-
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-7xl px-5 py-10">
                 {user.savedProperties.map((p) => (
                   <SavedPropertyCard

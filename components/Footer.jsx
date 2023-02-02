@@ -1,7 +1,7 @@
 "use client";
 
-import { MyContext } from "app/(global-context)";
 import { useContext } from "react";
+import { MyContext } from "app/(global-context)";
 
 const Footer = () => {
   const { darkMode } = useContext(MyContext);

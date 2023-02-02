@@ -1,6 +1,7 @@
 "use client";
 
-import { MyContext } from "app/(global-context)";
+import { useContext, useState } from "react";
+import { useRouter } from "next/navigation";
 import { auth } from "firebaseConfig";
 import {
   signInWithPopup,
@@ -8,11 +9,10 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { useContext, useState } from "react";
+import { MyContext } from "app/(global-context)";
 import { FcGoogle } from "react-icons/fc";
 import { MdOutlineAlternateEmail, MdPhoneIphone } from "react-icons/md";
 import { BiHomeSmile } from "react-icons/bi";
-import { useRouter } from "next/navigation";
 
 const login = () => {
   const { darkMode, setUser } = useContext(MyContext);
@@ -46,6 +46,8 @@ const login = () => {
       throw new Error(`Error ${errorCode}: ${errorMessage}`);
     }
   };
+
+  const loginPhone = async () => {};
 
   const signupEmail = async (e) => {
     e.preventDefault();
@@ -147,7 +149,7 @@ const login = () => {
           <button onClick={loginGoogle} className="login-button">
             <FcGoogle className="text-xl" /> Continue with Google
           </button>
-          <button onClick={loginGoogle} className="login-button">
+          <button onClick={loginPhone} className="login-button">
             <MdPhoneIphone className="text-xl" /> Continue with Phone
           </button>
           <button onClick={() => setSignup(!signup)} className="login-button">

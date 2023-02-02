@@ -1,7 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { BiSearch } from "react-icons/bi";
 
 const places = {
@@ -10,8 +10,8 @@ const places = {
   3: "villas",
   18: "penthouses",
   21: "hotel apart",
-  // Apartment -> 4|Townhouses -> 16|Villas -> 3|Penthouses -> 18|Hotel Apartments -> 21|
-  //         Villa Compound -> 19|Residential Plot -> 14|Residential Floor -> 12|Residential Building -> 17|Office -> 5|Shop -> 6|Warehouse -> 7|Labour camp -> 9|Commercial Villa -> 25|Bulk Units -> 20|Commercial Plot -> 15|Commercial Floor -> 13|Commercial Building -> 10|Factory -> 8|Industrial Land -> 22|Mixed Use Land -> 23|Showroom -> 24|Other Commercial -> 11
+  19: "villa compound",
+  7: "warehouse",
 };
 
 const sorts = {
@@ -21,7 +21,7 @@ const sorts = {
   "city-level-score": "city score",
 };
 
-const SearchEngine = ({ setCategorySelected }) => {
+const SearchEngine = () => {
   const router = useRouter();
   const [filters, setFilters] = useState({
     purpose: "",
@@ -38,7 +38,6 @@ const SearchEngine = ({ setCategorySelected }) => {
   };
 
   const handleSearch = () => {
-    setCategorySelected("");
     router.push(
       `/search/purpose=${filters.purpose}&sort=${filters.sort}&rentFrequency=${filters.rentFrequency}&categoryExternalID=${filters.categoryExternalID}`
     );
@@ -59,10 +58,11 @@ const SearchEngine = ({ setCategorySelected }) => {
           </button>
         </div>
       </div>
+
       <div
-        className={`${
+        className={`search-section ${
           filters.purpose !== "for-sale" && "group"
-        } search-section`}
+        }`}
       >
         <label className="search-section-label">
           {filters.purpose == "for-sale"
@@ -86,6 +86,7 @@ const SearchEngine = ({ setCategorySelected }) => {
           </button>
         </div>
       </div>
+
       <div className="search-section group">
         <label className="search-section-label">
           {filters.categoryExternalID
@@ -97,19 +98,26 @@ const SearchEngine = ({ setCategorySelected }) => {
             Apartment
           </button>
           <button onClick={handleFilters} name="categoryExternalID" value="16">
-            Townhouses
+            Townhouse
           </button>
           <button onClick={handleFilters} name="categoryExternalID" value="3">
             Villas
           </button>
           <button onClick={handleFilters} name="categoryExternalID" value="18">
-            Penthouses
+            Penthouse
           </button>
           <button onClick={handleFilters} name="categoryExternalID" value="21">
-            Hotel Apartments
+            Hotel Apart
+          </button>
+          <button onClick={handleFilters} name="categoryExternalID" value="19">
+            Villa Comp
+          </button>
+          <button onClick={handleFilters} name="categoryExternalID" value="7">
+            Warehouse
           </button>
         </div>
       </div>
+
       <div className="search-section group">
         <label className="search-section-label">
           {filters.sort ? sorts[filters.sort] : "sort"}
@@ -129,7 +137,8 @@ const SearchEngine = ({ setCategorySelected }) => {
           </button>
         </div>
       </div>
-      <button onClick={handleSearch} className="text-xl">
+
+      <button onClick={handleSearch} className="text-xl hover:text-theme">
         <BiSearch />
       </button>
     </div>

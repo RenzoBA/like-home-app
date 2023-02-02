@@ -1,36 +1,23 @@
 "use client";
-import { MyContext } from "app/(global-context)";
-import DetailSkeleton from "@/components/DetailSkeleton";
 
 import { useContext, useEffect, useState } from "react";
-import { getPropertyDetails } from "../../(fetchData)";
-import PropertyDetails from "../../../components/PropertyDetails";
+import { MyContext } from "app/(global-context)";
+import { getPropertyDetails } from "app/(fetchData)";
+import PropertyDetails from "@/components/PropertyDetails";
+import DetailSkeleton from "@/components/DetailSkeleton";
 
 const externalId = ({ params: { externalID } }) => {
   const { darkMode } = useContext(MyContext);
-  const [propertyDetails, setpropertyDetails] = useState(null);
+  const [propertyDetails, setPropertyDetails] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
       const details = await getPropertyDetails(externalID);
-      setpropertyDetails(details);
+      setPropertyDetails(details);
     };
     getData();
   }, []);
 
-  if (propertyDetails) {
-    return (
-      <div
-        className={`${
-          darkMode && "dark"
-        } flex justify-center items-center text-dark`}
-      >
-        <div className="w-full flex justify-center dark:bg-dark dark:text-white">
-          <PropertyDetails property={propertyDetails} />
-        </div>
-      </div>
-    );
-  }
   return (
     <div
       className={`${
@@ -38,7 +25,11 @@ const externalId = ({ params: { externalID } }) => {
       } flex justify-center items-center text-dark`}
     >
       <div className="w-full flex justify-center dark:bg-dark dark:text-white">
-        <DetailSkeleton />
+        {propertyDetails ? (
+          <PropertyDetails property={propertyDetails} />
+        ) : (
+          <DetailSkeleton />
+        )}
       </div>
     </div>
   );
