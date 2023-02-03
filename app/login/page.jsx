@@ -1,7 +1,5 @@
 "use client";
 
-// ADD SALE FOLDER - IMPLEMENT PHONE DEVICE SIZE - ADD PHONE AUTH - ADD MAP PROPERTY FEATURE
-
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { auth } from "firebaseConfig";

@@ -153,7 +153,7 @@ const PropertyDetails = ({
           </div>
         </div>
         <hr />
-        <div className="flex flex-row p-10 w-full justify-between items-center">
+        <div className="flex flex-row p-10 w-full justify-between items-start">
           <PropertyMap geography={geography} />
           {rentFrequency ? (
             <ReservationForm
