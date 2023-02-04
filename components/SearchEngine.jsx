@@ -44,7 +44,7 @@ const SearchEngine = () => {
   };
 
   return (
-    <div className="flex flex-row gap-2 items-center justify-center text-center border border-dark dark:border-white rounded-full py-2 px-4 w-full dark:bg-dark">
+    <div className="flex flex-row gap-2 items-center justify-center text-center lg:border border-dark dark:border-white rounded-full py-2 pl-0 pr-2 lg:px-4 w-full lg:w-[30rem] dark:bg-dark">
       <div className="search-section group">
         <label className="search-section-label">
           {filters.purpose ? filters.purpose.split("-").join(" ") : "purpose"}
@@ -138,7 +138,7 @@ const SearchEngine = () => {
         </div>
       </div>
 
-      <button onClick={handleSearch} className="text-xl hover:text-theme">
+      <button onClick={handleSearch} className="text-xl lg:hover:text-theme">
         <BiSearch />
       </button>
     </div>

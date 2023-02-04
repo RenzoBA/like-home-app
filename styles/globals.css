@@ -20,7 +20,7 @@ html {
   }
 
   .link {
-    @apply hover:text-theme transition-all;
+    @apply lg:hover:text-theme transition-all;
   }
 
   .details-house {
@@ -32,11 +32,11 @@ html {
   }
 
   .search-section-label {
-    @apply uppercase font-medium tracking-widest text-theme;
+    @apply uppercase font-medium tracking-wide lg:tracking-widest text-theme;
   }
 
   .search-section-buttons {
-    @apply flex flex-col w-full absolute py-2 gap-2 drop-shadow-lg bg-white dark:bg-dark rounded-lg opacity-0 invisible group-hover:visible group-hover:opacity-100 ease-in-out duration-300 transition-opacity z-50;
+    @apply flex flex-col w-full absolute py-2 gap-2 drop-shadow-lg bg-white dark:bg-dark rounded-lg invisible group-hover:visible lg:group-hover:opacity-100 ease-in-out duration-300 transition-opacity z-50;
   }
 
   .search-section-buttons > button {
@@ -44,7 +44,7 @@ html {
   }
 
   .header-icon {
-    @apply bg-dark dark:bg-white p-2 rounded-full transform ease-in-out transition-all text-xl hover:bg-theme dark:hover:bg-theme text-white dark:text-dark;
+    @apply bg-dark dark:bg-white p-2 rounded-full transform ease-in-out transition-all text-base md:text-xl lg:hover:bg-theme dark:lg:hover:bg-theme text-white dark:text-dark;
   }
 
   .button {
