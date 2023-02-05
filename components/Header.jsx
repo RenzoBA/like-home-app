@@ -28,9 +28,9 @@ const Header = () => {
     <div
       className={`${
         darkMode && "dark"
-      } flex flex-col justify-center backdrop-blur-sm relative shadow z-10`}
+      } flex flex-col justify-center fixed top-0 w-full shadow z-10`}
     >
-      <div className="w-full flex items-center justify-center dark:bg-dark text-dark dark:text-white border-b border-dark dark:border-white">
+      <div className="w-full flex items-center justify-center bg-stone-100 dark:bg-dark text-dark dark:text-white border-b border-dark dark:border-white">
         <div className="flex justify-between items-center w-full max-w-7xl p-3">
           <Link href="/" className="">
             <h1 className="text-xl md:text-3xl font-extrabold sm:font-black">
@@ -42,11 +42,10 @@ const Header = () => {
             </h1>
           </Link>
           <div className="hidden lg:flex">
-            {/* PENDIENTE */}
             <SearchEngine />
           </div>
           <div className="flex items-center justify-end gap-4 md:gap-8 text-base sm:text-xl md:text-2xl">
-            <ul className="hidden sm:flex gap-4">
+            <ul className="flex gap-4">
               <Link href="/rent" className="link">
                 Rent
               </Link>
@@ -101,7 +100,7 @@ const Header = () => {
                     )}
                   </div>
                 </button>
-                <div className="invisible group-focus-within:visible transition-all p-4 rounded-lg shadow-lg flex flex-col items-start gap-4 bg-white dark:bg-dark w-40 text-base absolute top-12 right-0 font-medium">
+                <div className="invisible group-focus-within:visible transition-all p-4 rounded-lg shadow-lg flex flex-col items-start gap-4 bg-white dark:bg-dark w-40 text-base absolute top-12 right-0 font-medium z-10">
                   {user ? (
                     <>
                       <p className="text-xs uppercase font-normal mb-2">
@@ -125,7 +124,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className="w-full flex lg:hidden items-center justify-center dark:bg-dark text-dark dark:text-white border-b border-dark dark:border-white text-xs sm:text-sm">
+      <div className="w-full flex lg:hidden items-center justify-center bg-stone-100 dark:bg-dark text-dark dark:text-white border-b border-dark dark:border-white text-xs sm:text-sm">
         <SearchEngine />
       </div>
     </div>

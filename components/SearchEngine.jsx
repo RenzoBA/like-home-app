@@ -6,11 +6,11 @@ import { BiSearch } from "react-icons/bi";
 
 const places = {
   4: "apartment",
-  16: "townhouses",
-  3: "villas",
-  18: "penthouses",
-  21: "hotel apart",
-  19: "villa compound",
+  16: "townhouse",
+  3: "villa",
+  18: "penthouse",
+  21: "hotel apt",
+  19: "villa comp",
   7: "warehouse",
 };
 
@@ -44,7 +44,7 @@ const SearchEngine = () => {
   };
 
   return (
-    <div className="flex flex-row gap-2 items-center justify-center text-center lg:border border-dark dark:border-white rounded-full py-2 pl-0 pr-2 lg:px-4 w-full lg:w-[30rem] dark:bg-dark">
+    <div className="flex flex-row gap-2 items-center justify-center text-center lg:border border-dark dark:border-white rounded-full py-2 pl-0 pr-2 lg:px-4 w-full lg:w-[34rem] dark:bg-dark">
       <div className="search-section group">
         <label className="search-section-label">
           {filters.purpose ? filters.purpose.split("-").join(" ") : "purpose"}

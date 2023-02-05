@@ -21,13 +21,12 @@ const filters = ({ params: { filters } }) => {
   }, []);
 
   return (
-    <div className={`${darkMode && "dark"} flex justify-center h-[88.5vh]`}>
-      <div className="w-full flex flex-col gap-4 items-center justify-center dark:bg-dark text-dark dark:text-white">
-        <h2 className="text-6xl tracking-wider font-bold">
-          <span className="uppercase underline decoration-theme">
+    <div className={`${darkMode && "dark"} flex justify-center min-h-screen`}>
+      <div className="w-full flex flex-col gap-4 items-center justify-center dark:bg-dark text-dark dark:text-white text-center pt-28 pb-10">
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl tracking-wider font-bold">
+          <span className="uppercase underline inline-block decoration-theme underline-offset-2">
             search result
           </span>
-          :
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-7xl px-5 py-10">
           {propertiesSearched ? (

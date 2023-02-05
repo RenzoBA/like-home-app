@@ -6,7 +6,7 @@ const Marker = () => (
 
 const PropertyMap = ({ geography: { lat, lng } }) => {
   return (
-    <div className="w-3/5 h-96 rounded-2xl overflow-hidden">
+    <div className="w-full md:w-4/5 h-96 rounded-2xl overflow-hidden">
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_API_KEY }}
         defaultCenter={{

@@ -104,25 +104,27 @@ const login = () => {
     <div
       className={`${
         darkMode && "dark"
-      } h-[88.5vh] flex justify-center items-center text-dark`}
+      } h-screen flex justify-center items-center text-dark`}
     >
-      <div className="w-full h-full flex flex-col items-center justify-center dark:bg-dark dark:text-white">
+      <div className="w-full h-full flex flex-col items-center justify-center dark:bg-dark dark:text-white pt-24 pb-10">
         <form
           onSubmit={signup ? signupEmail : loginEmail}
-          className="flex flex-col gap-3 w-1/4 border-b border-stone-300 dark:border-stone-600"
+          className="flex flex-col gap-3 w-80 sm:w-96 border-b border-stone-300 dark:border-stone-600"
         >
-          <div className={`${!signup && "hidden"} flex gap-3`}>
+          <div
+            className={`${!signup && "hidden"} flex flex-col md:flex-row gap-3`}
+          >
             <input
               type="text"
               name="name"
               placeholder="Name"
-              className="input w-1/2 py-2 px-4"
+              className="input w-full py-2 px-4"
             />
             <input
               type="text"
               name="last-name"
               placeholder="Last Name"
-              className="input w-1/2 py-2 px-4"
+              className="input w-full py-2 px-4"
             />
           </div>
           <input
@@ -141,11 +143,11 @@ const login = () => {
             value={credential.password}
             className="input py-2 px-4"
           />
-          <button className="button h-10">
+          <button className="button h-14">
             {signup ? "Sign up" : "Log in"}
           </button>
         </form>
-        <div className="flex flex-col gap-5 w-1/4 pt-6">
+        <div className="flex flex-col gap-5 w-80 sm:w-96 pt-6">
           <button onClick={loginGoogle} className="login-button">
             <FcGoogle className="text-xl" /> Continue with Google
           </button>
@@ -157,7 +159,7 @@ const login = () => {
             {signup ? "Continue " : "Sign up"} with Email
           </button>
         </div>
-        <h1 className="text-5xl font-black mt-10 select-none">
+        <h1 className="hidden lg:inline-block text-5xl font-black mt-10 select-none">
           Like H
           <span className="inline-block relative -bottom-1">
             <BiHomeSmile color="#84cc16" />

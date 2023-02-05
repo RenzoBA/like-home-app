@@ -68,7 +68,7 @@ const PropertyCard = ({
   };
 
   return (
-    <div className="rounded-lg hover:-translate-y-2 transform transition-transform duration-300 ease-in-out bg-white text-dark shadow-md dark:bg-dark-card dark:text-white border border-stone-500 overflow-hidden pb-5 relative w-72 h-[410px]">
+    <div className="rounded-lg lg:hover:-translate-y-2 transform transition-transform duration-300 ease-in-out bg-white text-dark shadow-md dark:bg-dark-card dark:text-white border border-stone-500 overflow-hidden pb-5 relative w-72 h-[410px]">
       <button
         onClick={
           !user
@@ -80,11 +80,11 @@ const PropertyCard = ({
         className="z-50 text-3xl absolute top-3 right-2"
       >
         {!user ? (
-          <AiOutlineHeart />
+          <AiOutlineHeart color="#fff" />
         ) : user.savedProperties.includes(property) ? (
           <AiFillHeart color="#ef4444" />
         ) : (
-          <AiOutlineHeart />
+          <AiOutlineHeart color="#fff" />
         )}
       </button>
       <Link href={`/${purpose.split("-")[1]}/${externalID}`}>

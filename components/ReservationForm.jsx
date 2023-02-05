@@ -27,7 +27,7 @@ const ReservationForm = ({ price = 0, rentFrequency, score = 0, user }) => {
   return (
     <form
       onSubmit={user ? handleSubmitBook : loginRoute}
-      className="w-[22rem] flex flex-col items-center justify-center text-lg font-medium p-4 rounded-2xl shadow border border-dark dark:border-white"
+      className="w-full md:w-80 flex flex-col items-center justify-center text-lg font-medium p-4 rounded-2xl shadow border border-dark dark:border-white"
     >
       <div className="flex flex-row justify-between w-full items-center text-xl mb-4">
         <p>
@@ -41,7 +41,7 @@ const ReservationForm = ({ price = 0, rentFrequency, score = 0, user }) => {
           <p>{score / 20}</p>
         </div>
       </div>
-      <div className="flex gap-2 items-center justify-center font-normal mb-6">
+      <div className="w-full flex flex-col sm:flex-row gap-2 items-center justify-center font-normal mb-6">
         <input
           type="date"
           min={today}
@@ -61,30 +61,39 @@ const ReservationForm = ({ price = 0, rentFrequency, score = 0, user }) => {
           required
         />
       </div>
-      <button className="button">book now</button>
       <div className="w-full">
         <div className="form-cost">
           <p className="font-light">
             Your book ({dayIn && dayOut ? bookingDays : 0} days)
           </p>
-          <p>{dayIn && dayOut ? (priceDay * bookingDays).toFixed(2) : 0} AED</p>
+          <p>
+            {dayIn && dayOut ? (priceDay * bookingDays).toFixed(2) : 0}{" "}
+            <span className="currency">AED</span>
+          </p>
         </div>
         <div className="form-cost">
           <p className="font-light">Long stay discount</p>
           <p className="text-theme">
-            {dayIn && dayOut ? "-" + discount : 0} AED
+            {dayIn && dayOut ? "-" + discount : 0}{" "}
+            <span className="currency">AED</span>
           </p>
         </div>
         <div className="form-cost">
           <p className="font-light">Cleaning fee</p>
-          <p>{dayIn && dayOut ? cleaningFee.toFixed(2) : 0} AED</p>
+          <p>
+            {dayIn && dayOut ? cleaningFee.toFixed(2) : 0}{" "}
+            <span className="currency">AED</span>
+          </p>
         </div>
         <div className="form-cost">
           <p className="font-light">Service fee</p>
-          <p>{dayIn && dayOut ? serviceFee.toFixed(2) : 0} AED</p>
+          <p>
+            {dayIn && dayOut ? serviceFee.toFixed(2) : 0}{" "}
+            <span className="currency">AED</span>
+          </p>
         </div>
         <hr className=" mt-4" />
-        <div className="form-cost text-2xl mt-4">
+        <div className="form-cost text-xl sm:text-xl md:text-2xl mt-4">
           <p className="uppercase">Total</p>
           <p>
             {dayIn && dayOut
@@ -95,10 +104,11 @@ const ReservationForm = ({ price = 0, rentFrequency, score = 0, user }) => {
                   serviceFee
                 ).toFixed(2)
               : 0}{" "}
-            AED
+            <span className="currency">AED</span>
           </p>
         </div>
       </div>
+      <button className="button">book now</button>
     </form>
   );
 };

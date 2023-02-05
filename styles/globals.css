@@ -12,11 +12,11 @@ html {
   }
 
   .home-section-image {
-    @apply object-cover w-full h-full select-none filter transition duration-500 grayscale group-hover:grayscale-0 brightness-50 group-hover:brightness-75 group-hover:scale-105;
+    @apply object-cover w-full h-full select-none filter transition duration-500 grayscale lg:group-hover:grayscale-0 brightness-50 lg:group-hover:brightness-75 lg:group-hover:scale-105;
   }
 
   .home-section-link {
-    @apply transition-all duration-500 hover:scale-105 absolute bottom-20 py-2 px-5 text-dark dark:text-white rounded-2xl uppercase text-2xl bg-white/60 dark:bg-stone-600/70 tracking-widest font-black drop-shadow-lg group-hover:bg-theme border border-dark dark:border-white;
+    @apply transition-all duration-500 lg:hover:scale-105 absolute bottom-20 py-2 px-5 text-dark dark:text-white rounded-2xl uppercase text-lg lg:text-2xl bg-theme dark:bg-theme lg:bg-white/60 lg:dark:bg-stone-600/70 tracking-widest font-black drop-shadow-lg lg:group-hover:bg-theme border border-dark dark:border-white;
   }
 
   .link {
@@ -36,30 +36,34 @@ html {
   }
 
   .search-section-buttons {
-    @apply flex flex-col w-full absolute py-2 gap-2 drop-shadow-lg bg-white dark:bg-dark rounded-lg invisible group-hover:visible lg:group-hover:opacity-100 ease-in-out duration-300 transition-opacity z-50;
+    @apply flex flex-col w-full absolute py-2 gap-2 drop-shadow-lg bg-white dark:bg-dark rounded-lg invisible group-hover:visible opacity-0 group-hover:opacity-100 ease-in-out duration-300 transition-opacity;
   }
 
   .search-section-buttons > button {
-    @apply hover:text-theme uppercase font-light tracking-wide;
+    @apply focus:text-theme lg:hover:text-theme uppercase font-light tracking-wide;
   }
 
   .header-icon {
-    @apply bg-dark dark:bg-white p-2 rounded-full transform ease-in-out transition-all text-base md:text-xl lg:hover:bg-theme dark:lg:hover:bg-theme text-white dark:text-dark;
+    @apply bg-dark dark:bg-white p-2 rounded-full transform ease-in-out transition-all text-base md:text-xl lg:hover:bg-theme lg:dark:hover:bg-theme text-white dark:text-dark;
   }
 
   .button {
-    @apply uppercase tracking-widest rounded-lg py-2 mb-6 w-full bg-gradient-to-l from-lime-400 to-lime-600 text-white transition-all transform hover:text-xl ease-in-out duration-150;
+    @apply h-14 uppercase tracking-widest rounded-md py-2 mt-6 w-full bg-gradient-to-l from-lime-400 to-lime-600 text-white transition-all lg:transform lg:hover:text-xl ease-in-out duration-150;
   }
 
   .input {
-    @apply rounded-lg py-1 px-2 text-dark border;
+    @apply w-full rounded-md py-1 px-2 text-base text-dark border border-stone-300 dark:border-stone-600;
   }
 
   .form-cost {
-    @apply flex w-full justify-between gap-1;
+    @apply flex w-full justify-between gap-1 text-lg font-light;
   }
 
   .login-button {
-    @apply w-full flex flex-row gap-4 items-center justify-center font-light tracking-wider uppercase text-lg border border-dark dark:border-white py-3 px-8 rounded-lg inset-0 hover:bg-stone-200 dark:hover:bg-stone-900;
+    @apply w-full flex flex-row gap-4 items-center justify-center font-light tracking-wider uppercase text-base sm:text-lg border border-stone-300 dark:border-stone-600 shadow py-3 px-8 rounded-full inset-0 lg:hover:bg-stone-200 lg:dark:hover:bg-stone-900;
+  }
+
+  .currency {
+    @apply text-xs md:text-sm font-normal;
   }
 }

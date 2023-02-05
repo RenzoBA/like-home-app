@@ -7,7 +7,7 @@ export default function RootLayout({ children }) {
   return (
     <html>
       <head />
-      <body>
+      <body className="min-h-screen relative">
         <GlobalContext>
           <Header />
           {children}

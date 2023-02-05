@@ -19,12 +19,8 @@ const externalId = ({ params: { externalID } }) => {
   }, []);
 
   return (
-    <div
-      className={`${
-        darkMode && "dark"
-      } flex justify-center items-center text-dark`}
-    >
-      <div className="w-full flex justify-center dark:bg-dark dark:text-white">
+    <div className={`${darkMode && "dark"} flex justify-center min-h-screen`}>
+      <div className="w-full flex items-center justify-center dark:bg-dark text-dark dark:text-white pt-28 pb-10 px-5">
         {propertyDetails ? (
           <PropertyDetails property={propertyDetails} />
         ) : (

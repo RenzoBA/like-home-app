@@ -29,7 +29,7 @@ const page = () => {
     <div
       className={`${
         darkMode && "dark"
-      } h-[88.5vh] flex justify-center items-center text-dark`}
+      } h-screen flex justify-center items-center text-dark`}
     >
       <div className="relative w-full h-full flex flex-col items-center justify-center dark:bg-dark dark:text-white">
         <div className="flex flex-row justify-center h-full w-full divide-x divide-dark dark:divide-white">
@@ -59,14 +59,15 @@ const page = () => {
           </div>
         </div>
         <div className="flex flex-col items-center justify-center absolute select-none">
-          <h1 className="text-7xl font-black text-white tracking-wide">
-            Like H
+          <h1 className="text-7xl font-black text-white tracking-wide text-center">
+            Like
+            <br className="inline sm:hidden" /> H
             <span className="inline-block relative -bottom-1">
               <BiHomeSmile color="#84cc16" />
             </span>
             me
           </h1>
-          <p className="text-2xl text-white">
+          <p className="text-xl sm:text-2xl text-white text-center">
             The best site to find your place
           </p>
         </div>
