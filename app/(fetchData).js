@@ -4,7 +4,7 @@ export const getPropertiesSearch = async (path) => {
     {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY_6,
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
         "X-RapidAPI-Host": "bayut.p.rapidapi.com",
       },
     }
@@ -22,7 +22,7 @@ export const getProperties = async (purpose) => {
     {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY_6,
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
         "X-RapidAPI-Host": "bayut.p.rapidapi.com",
       },
     }
@@ -40,7 +40,7 @@ export const getPropertyDetails = async (externalID) => {
     {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY_6,
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
         "X-RapidAPI-Host": "bayut.p.rapidapi.com",
       },
     }
